@@ -2,10 +2,30 @@ import axios from 'axios';
 
 const BASE_URL = 'http://127.0.0.1:5000'; // Flask backend URL
 
-export const getAllStocks = () => axios.get(`${BASE_URL}/stocks`);
-export const getStockDetails = (asset) => axios.get(`${BASE_URL}/stocks/${asset}`);
-export const getStockReturns = (asset, startDate, endDate) =>
-    axios.get(`${BASE_URL}/stocks/${asset}/returns`, {
-        params: { start_date: startDate, end_date: endDate },
-    });
+// Displays all the stock data
+export const getAllStocks = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/stocks`);
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching all stocks:', error);
+        return []; //Returns empty array when there is an error
+    }
+};
 
+// Display the data of a specific asset
+export const getStockDetails = async (asset) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/stocks/${asset.trim()}/returns`, {
+            params: {
+                'start_date': '12/1/1999',
+                'end_date': '11/6/2023'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching details for ${asset}:`, error);
+        return []; //Returns empty array when there is an error
+    }
+};

@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { getStockDetails, getStockReturns } from '../services/api';
 
 const AssetDetails = ({ asset }) => {
-    const [stocks, setStocks] = useState([]); // All stocks of the selected asset
-    const [selectedStock, setSelectedStock] = useState(null); // Currently selected stock
-    const [startDate, setStartDate] = useState(''); // Start date for returns
-    const [endDate, setEndDate] = useState(''); // End date for returns
-    const [cumulativeReturn, setCumulativeReturn] = useState(null); // Calculated cumulative return
+    const [stocks, setStocks] = useState([]);
+    const [selectedStock, setSelectedStock] = useState(null);
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [cumulativeReturn, setCumulativeReturn] = useState(null);
 
     useEffect(() => {
         if (asset) {
-            // Fetch all stocks for the selected asset
             getStockDetails(asset)
                 .then((response) => setStocks(response.data))
                 .catch((error) => console.error('Error fetching asset stocks:', error));

@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { getAllStocks, getStockDetails } from '../services/api';
 
 const StockList = ({ onSelect }) => {
-    const [assets, setAssets] = useState([]); // List of unique assets
+    const [assets, setAssets] = useState([]); 
 
     useEffect(() => {
-        // Fetch all stocks and extract unique asset names
         getAllStocks()
-            .then((response) => {
-                const uniqueAssets = [...new Set(response.data.map((item) => item.asset))];
+            .then((stocks) => {
+                const uniqueAssets = [...new Set(stocks.map((item) => item.asset))];
                 setAssets(uniqueAssets);
             })
             .catch((error) => console.error('Error fetching stocks:', error));
@@ -16,10 +15,11 @@ const StockList = ({ onSelect }) => {
 
     const handleAssetClick = (asset) => {
         getStockDetails(asset)
-            .then((response) => {
-                onSelect(asset, response.data); // Pass asset and its time series data to App.js
+            .then((data) => {
+                console.log('Fetched data for asset:', asset, data); 
+                onSelect(asset, data);
             })
-            .catch((error) => console.error(`Error fetching details for ${asset}:`, error));
+            .catch((error) => console.error(`Error fetching details for ${asset}:`, error)); 
     };
 
     return (

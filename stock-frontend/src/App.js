@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import StockList from './components/StockList';
-import PriceChart from './components/PriceChart';
+import PriceChart from './components/PriceChart'; 
 
 const App = () => {
-    const [selectedAsset, setSelectedAsset] = useState(null); // Tracks the selected asset
-    const [timeSeriesData, setTimeSeriesData] = useState([]); // Tracks time series data for the chart
+    const [selectedAsset, setSelectedAsset] = useState(null);
+    const [timeSeriesData, setTimeSeriesData] = useState([]); 
+
 
     return (
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -13,14 +14,21 @@ const App = () => {
                 <StockList
                     onSelect={(asset, data) => {
                         setSelectedAsset(asset);
-                        setTimeSeriesData(data);
+                        setTimeSeriesData((prevData) => {
+                            console.log('inside set time series data: ', data);
+                            return data;
+                        });
                     }}
                 />
             </div>
             {selectedAsset && (
                 <div style={{ marginTop: '20px' }}>
                     <h2>Selected Asset: {selectedAsset}</h2>
-                    {timeSeriesData.length > 0 && <PriceChart data={timeSeriesData} />}
+                    {Array.isArray(timeSeriesData) && timeSeriesData.length > 0 ? (
+                        <PriceChart data={timeSeriesData} />
+                    ) : (
+                        <div>No time series data available for this asset.</div>
+                    )}
                 </div>
             )}
         </div>
