@@ -23,3 +23,12 @@ http://127.0.0.1:5000/stocks/{name-of-the-asset}/returns?start_date={mm/dd/yyyy}
 
 **for instance:** http://127.0.0.1:5000/stocks/Amazon%20Com/returns?start_date=12/1/1999&end_date=12/9/1999
 
+The graph has an option to switch to view Stock Price or Cumulative Returns individually or displaying both at once.
+
+
+
+
+
+
+
+
