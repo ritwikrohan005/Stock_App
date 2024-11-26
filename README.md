@@ -19,7 +19,7 @@ http://127.0.0.1:5000/stocks/{name of the asset}
 
 **To get the cumulative returns use the below URL**
 
-http://127.0.0.1:5000/stocks/{name of the asset}/returns?start_date={mm/dd/yyyy}&end_date={mm/dd/yyyy}
+http://127.0.0.1:5000/stocks/{name-of-the-asset}/returns?start_date={mm/dd/yyyy}&end_date={mm/dd/yyyy}
 
 **for instance:** http://127.0.0.1:5000/stocks/Amazon%20Com/returns?start_date=12/1/1999&end_date=12/9/1999
 
