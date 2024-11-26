@@ -28,7 +28,7 @@ const PriceChart = ({ data = [] }) => {
                 tension: 0.1,
             },
             {
-                label: 'Stock Price ($)',
+                label: 'Cumulative Returns',
                 data: data.map((item) => item.cumulative_return),
                 borderColor: 'rgba(255,0,0,1)',
                 fill: false,
