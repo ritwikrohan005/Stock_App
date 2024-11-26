@@ -13,7 +13,7 @@ http://127.0.0.1:5000/stocks
 
 **To get the specific asset information use the below URL**
 
-http://127.0.0.1:5000/stocks/{name-of-the-asset}
+http://127.0.0.1:5000/stocks/ name of the asset
 
 **for instance:** http://127.0.0.1:5000/stocks/Apple
 
